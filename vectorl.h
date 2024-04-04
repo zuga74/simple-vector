@@ -1,0 +1,69 @@
+#ifndef vector_H
+#define vector_H
+
+#include <stdlib.h>
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+#ifndef BOOL
+#define BOOL	unsigned char
+#endif
+
+#ifndef TRUE
+#define TRUE	1
+#endif
+
+#ifndef FALSE
+#define FALSE	0
+#endif
+
+#ifndef NULL
+#define NULL	0
+#endif
+
+typedef struct _vector_item {
+  struct _vector_item * next;
+  unsigned char data[];
+} vector_item_t;
+
+typedef struct _vector {
+    vector_item_t * first;
+    size_t data_size;
+    size_t count;
+    BOOL busy;
+} vector_t;
+
+//init with vector item size
+void vector_init(vector_t *v, size_t data_size);
+
+//push data
+BOOL vector_push(vector_t * v, void * data);
+
+//get vector count
+size_t vector_count(vector_t * v);
+
+//get pointer to vector data from index
+void * vector_get_at(vector_t *v, size_t index);
+
+//set vector data from index
+BOOL vector_set_at(vector_t *v, size_t index, void * data);
+
+//free vector
+void vector_free(vector_t *v);
+
+//get first element from vector (FIFO)
+BOOL vector_pop(vector_t *v, void * data);
+
+//delete vector data from index
+BOOL vector_delete_at(vector_t *v, size_t index);
+
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
