@@ -25,6 +25,9 @@ extern "C" {
 #define NULL	0
 #endif
 
+
+#pragma pack(push, 1)
+
 typedef struct _vector_item {
   struct _vector_item * next;
   unsigned char data[];
@@ -36,6 +39,8 @@ typedef struct _vector {
     size_t count;
     BOOL busy;
 } vector_t;
+
+#pragma pack(pop)
 
 //init with vector item size
 void vector_init(vector_t *v, size_t data_size);
